@@ -9,30 +9,40 @@
 #include "triangle.h"
 #include "math.h"
 
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
 // 顶点着色器 GLSL 源码
 const char *vertexShaderSource = "#version 330 core\n"
                                  "layout (location = 0) in vec3 aPos;\n" // 位置, 顶点着色器固定要加上 layout (location = 0)
                                  "layout (location = 1) in vec3 aColor;\n" // 颜色
+                                 "layout (location = 2) in vec2 aTexCoord;\n"
                                  "out vec4 pColor;\n"
+                                 "out vec2 TexCoord;\n"
                                  "void main()\n"
                                  "{\n"
                                  "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
                                  "   pColor = vec4(aColor, 1.0);\n"
+                                 "   TexCoord = aTexCoord;\n"
                                  "}\0";
 
 // 片段着色器 GLSL 源码
 const char *fragmentShaderSource = "#version 330 core\n"
                                    "in vec4 pColor;\n"
+                                   "in vec2 TexCoord;\n"
                                    "uniform vec4 myColor = vec4(0.0, 1.0, 0.0, 1.0);\n" // 全局变量
+                                   "uniform sampler2D Texture;\n"
                                    "out vec4 FragColor;\n" // 输出变量
                                    "void main()\n"
                                    "{\n"
-                                   "    FragColor = myColor;\n"
+                                   "    FragColor = texture(Texture, TexCoord) * myColor;\n"
                                    "}\n";
 
 const GLuint FAIL = -1;
 
 GLuint programGlobal = -1;
+
+DecodedImage *textureImageGlobal; // 纹理图片
 
 /**
  * 生成三角形的 Shader Program.
@@ -99,13 +109,20 @@ void drawTriangle() {
         return;
     }
 
+    if (textureImageGlobal == NULL) {
+        getImageData();
+    }
+    if (textureImageGlobal == NULL) {
+        return;
+    }
+
     // 坐标是从 -1 到 1
     float vertices[] = {
-            // 坐标(position 0)  // 颜色 (position 1)
-            0.5f, 0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   // 右上角
-            0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // 右下角
-            -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f,   // 左下角
-            -0.5f, 0.5f, 0.0f,  0.5f, 0.5f, 0.5f,   // 左上角
+            // 坐标(position 0)  // 颜色 (position 1) // 纹理坐标
+            0.5f, 0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 0.0f,   // 右上角
+            0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   1.0f, 1.0f,   // 右下角
+            -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f,   0.0f, 1.0f,   // 左下角
+            -0.5f, 0.5f, 0.0f,  0.5f, 0.5f, 0.5f,   0.0f, 0.0f    // 左上角
     };
 
     // 顶点缓冲对象：Vertex Buffer Object，VBO
@@ -127,11 +144,14 @@ void drawTriangle() {
 
     // 设置顶点属性
     // 坐标
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *) 0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *) 0);
     glEnableVertexAttribArray(0);
     // 颜色
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *) (3 * sizeof(float)));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *) (3 * sizeof(float)));
     glEnableVertexAttribArray(1);
+    // 纹理
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *) (6 * sizeof(float)));
+    glEnableVertexAttribArray(2);
 
     // 使用编译好的渲染程序
     glUseProgram(programGlobal);
@@ -142,6 +162,14 @@ void drawTriangle() {
     float blueValue = redValue + greenValue / 2;
     int vertexColorLocation = glGetUniformLocation(programGlobal, "myColor");
     glUniform4f(vertexColorLocation, redValue, greenValue, blueValue, 1.0f);
+
+    // 纹理处理
+    GLuint texture;
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureImageGlobal->width, textureImageGlobal->height, 0, GL_RGB, GL_UNSIGNED_BYTE,
+                 textureImageGlobal->data);
+    glGenerateMipmap(GL_TEXTURE_2D);
 
 //    glBindVertexArray(VAO);
 
@@ -161,5 +189,18 @@ void drawTriangle() {
     // 不填充，
     // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBindTexture(GL_TEXTURE_2D, texture);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, NULL);
+}
+
+DecodedImage *getImageData() {
+    int width, height, channels;
+    unsigned char *data = stbi_load("../test.jpeg", &width, &height, &channels, 0);
+    auto decodedImage = new DecodedImage;
+    decodedImage -> data = data;
+    decodedImage -> width = width;
+    decodedImage -> height = height;
+    decodedImage -> channels = channels;
+    textureImageGlobal = decodedImage;
+    return decodedImage;
 }

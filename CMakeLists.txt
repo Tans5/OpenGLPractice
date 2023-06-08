@@ -13,7 +13,7 @@ add_library(
         libglfw3
         SHARED
         IMPORTED
-        include/triangle.h)
+        include/triangle.h include/stb_image.h)
 set_target_properties( libglfw3
         PROPERTIES IMPORTED_LOCATION
         ${CMAKE_CURRENT_SOURCE_DIR}/libs/lib-arm64/libglfw.3.dylib )

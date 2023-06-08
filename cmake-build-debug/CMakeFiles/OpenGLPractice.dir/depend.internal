@@ -15,5 +15,6 @@ CMakeFiles/OpenGLPractice.dir/src/triangle.cpp.o
  ../include/GLFW/glfw3.h
  ../include/KHR/khrplatform.h
  ../include/glad/glad.h
+ ../include/stb_image.h
  ../include/triangle.h
  /Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/triangle.cpp

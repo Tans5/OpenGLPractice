@@ -7,6 +7,14 @@
 
 #endif //OPENGLPRACTICE_TRIANGLE_H
 
+typedef struct {
+    unsigned char* data;
+    int width;
+    int height;
+    int channels;
+} DecodedImage;
+
+DecodedImage * getImageData();
 
 GLuint createTriangleProgram();
 

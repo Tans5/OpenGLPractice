@@ -14,6 +14,7 @@ CMakeFiles/OpenGLPractice.dir/main.cpp.o: ../main.cpp
 CMakeFiles/OpenGLPractice.dir/src/triangle.cpp.o: ../include/GLFW/glfw3.h
 CMakeFiles/OpenGLPractice.dir/src/triangle.cpp.o: ../include/KHR/khrplatform.h
 CMakeFiles/OpenGLPractice.dir/src/triangle.cpp.o: ../include/glad/glad.h
+CMakeFiles/OpenGLPractice.dir/src/triangle.cpp.o: ../include/stb_image.h
 CMakeFiles/OpenGLPractice.dir/src/triangle.cpp.o: ../include/triangle.h
 CMakeFiles/OpenGLPractice.dir/src/triangle.cpp.o: ../src/triangle.cpp
 
