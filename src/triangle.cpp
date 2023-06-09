@@ -37,7 +37,7 @@ const char *fragmentShaderSource = "#version 330 core\n"
                                    "void main()\n"
                                    "{\n"
                                    "    FragColor = mix(texture(Texture, TexCoord), texture(Texture2, TexCoord), 0.5) * myColor;\n"
-//                                    "     FragColor = texture(Texture2, TexCoord) * myColor;"
+//                                    "     FragColor = texture(Texture, TexCoord);"
                                    "}\n";
 
 const GLuint FAIL = -1;
@@ -187,7 +187,7 @@ void drawTriangle() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glGenerateMipmap(GL_TEXTURE_2D);
 
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureImage1Global->width, textureImage1Global->height, 0, GL_RGB, GL_UNSIGNED_BYTE,
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureImage1Global->width, textureImage1Global->height, 0, GL_RGBA, GL_UNSIGNED_BYTE,
                  textureImage1Global->data);
 
     // 纹理2
@@ -245,7 +245,7 @@ DecodedImage *getImageData(const char * path) {
 }
 
 DecodedImage *getImage1Data() {
-    auto decodedImage = getImageData("../test.jpeg");
+    auto decodedImage = getImageData("../test.png");
     textureImage1Global = decodedImage;
     return decodedImage;
 }
