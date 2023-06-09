@@ -8,6 +8,9 @@
 #include "stdio.h"
 #include "triangle.h"
 #include "math.h"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -19,9 +22,10 @@ const char *vertexShaderSource = "#version 330 core\n"
                                  "layout (location = 2) in vec2 aTexCoord;\n"
                                  "out vec4 pColor;\n"
                                  "out vec2 TexCoord;\n"
+                                 "uniform mat4 transform;\n"
                                  "void main()\n"
                                  "{\n"
-                                 "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+                                 "   gl_Position = transform * vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
                                  "   pColor = vec4(aColor, 1.0);\n"
                                  "   TexCoord = aTexCoord;\n"
                                  "}\0";
@@ -165,13 +169,23 @@ void drawTriangle() {
 
     // 使用编译好的渲染程序
     glUseProgram(programGlobal);
-    // 更新uniform颜色
     float timeValue = glfwGetTime();
+    // 更新uniform颜色
     float redValue = cos(timeValue) / 2.0f + 0.5f;
     float greenValue = sin(timeValue) / 2.0f + 0.5f;
     float blueValue = redValue + greenValue / 2;
     int vertexColorLocation = glGetUniformLocation(programGlobal, "myColor");
     glUniform4f(vertexColorLocation, redValue, greenValue, blueValue, 1.0f);
+
+    // 坐标变换
+    glm::mat4 transform = glm::mat4(1.0f);
+
+    // 放缩
+    float scale = abs(cos(timeValue)) + 0.5f;
+    transform = glm::scale(transform, glm::vec3(scale, scale, 0));
+    // 绕 z 轴 旋转
+    transform = glm::rotate(transform, glm::radians(timeValue * 100), glm::vec3(0.0f, 1.0f, 0.0f));
+    glUniformMatrix4fv(glGetUniformLocation(programGlobal, "transform"), 1, GL_FALSE, glm::value_ptr(transform));
 
     // 纹理处理
     // 纹理1
