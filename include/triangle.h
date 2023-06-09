@@ -14,7 +14,9 @@ typedef struct {
     int channels;
 } DecodedImage;
 
-DecodedImage * getImageData();
+DecodedImage * getImage1Data();
+
+DecodedImage * getImage2Data();
 
 GLuint createTriangleProgram();
 

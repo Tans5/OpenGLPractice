@@ -32,17 +32,20 @@ const char *fragmentShaderSource = "#version 330 core\n"
                                    "in vec2 TexCoord;\n"
                                    "uniform vec4 myColor = vec4(0.0, 1.0, 0.0, 1.0);\n" // 全局变量
                                    "uniform sampler2D Texture;\n"
+                                   "uniform sampler2D Texture2;\n"
                                    "out vec4 FragColor;\n" // 输出变量
                                    "void main()\n"
                                    "{\n"
-                                   "    FragColor = texture(Texture, TexCoord) * myColor;\n"
+                                   "    FragColor = mix(texture(Texture, TexCoord), texture(Texture2, TexCoord), 0.5) * myColor;\n"
+//                                    "     FragColor = texture(Texture2, TexCoord) * myColor;"
                                    "}\n";
 
 const GLuint FAIL = -1;
 
 GLuint programGlobal = -1;
 
-DecodedImage *textureImageGlobal; // 纹理图片
+DecodedImage *textureImage1Global = NULL; // 纹理图片
+DecodedImage *textureImage2Global = NULL; // 纹理图片
 
 /**
  * 生成三角形的 Shader Program.
@@ -109,10 +112,17 @@ void drawTriangle() {
         return;
     }
 
-    if (textureImageGlobal == NULL) {
-        getImageData();
+    if (textureImage1Global == NULL) {
+        getImage1Data();
     }
-    if (textureImageGlobal == NULL) {
+    if (textureImage1Global == NULL) {
+        return;
+    }
+
+    if (textureImage2Global == NULL) {
+        getImage2Data();
+    }
+    if (textureImage2Global == NULL) {
         return;
     }
 
@@ -164,12 +174,42 @@ void drawTriangle() {
     glUniform4f(vertexColorLocation, redValue, greenValue, blueValue, 1.0f);
 
     // 纹理处理
+    // 纹理1
     GLuint texture;
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureImageGlobal->width, textureImageGlobal->height, 0, GL_RGB, GL_UNSIGNED_BYTE,
-                 textureImageGlobal->data);
+
+    // set the texture wrapping parameters
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// set texture wrapping to GL_REPEAT (default wrapping method)
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    // set texture filtering parameters
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glGenerateMipmap(GL_TEXTURE_2D);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureImage1Global->width, textureImage1Global->height, 0, GL_RGB, GL_UNSIGNED_BYTE,
+                 textureImage1Global->data);
+
+    // 纹理2
+    GLuint texture2;
+    glGenTextures(1, &texture2);
+    glBindTexture(GL_TEXTURE_2D, texture2);
+
+    // set the texture wrapping parameters
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// set texture wrapping to GL_REPEAT (default wrapping method)
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    // set texture filtering parameters
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glGenerateMipmap(GL_TEXTURE_2D);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureImage2Global->width, textureImage2Global->height, 0, GL_RGBA, GL_UNSIGNED_BYTE,
+                 textureImage2Global->data);
+
+    glActiveTexture(GL_TEXTURE0); // 激活纹理
+    glActiveTexture(GL_TEXTURE1);
+    glUniform1i(glGetUniformLocation(programGlobal, "Texture"), 1); // 绑定纹理到片段着色器到 Texture 变量
+    glUniform1i(glGetUniformLocation(programGlobal, "Texture2"), 0); // 绑定纹理到片段着色器到 Texture2 变量
 
 //    glBindVertexArray(VAO);
 
@@ -193,14 +233,25 @@ void drawTriangle() {
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, NULL);
 }
 
-DecodedImage *getImageData() {
+DecodedImage *getImageData(const char * path) {
     int width, height, channels;
-    unsigned char *data = stbi_load("../test.jpeg", &width, &height, &channels, 0);
+    unsigned char *data = stbi_load(path, &width, &height, &channels, 0);
     auto decodedImage = new DecodedImage;
     decodedImage -> data = data;
     decodedImage -> width = width;
     decodedImage -> height = height;
     decodedImage -> channels = channels;
-    textureImageGlobal = decodedImage;
+    return decodedImage;
+}
+
+DecodedImage *getImage1Data() {
+    auto decodedImage = getImageData("../test.jpeg");
+    textureImage1Global = decodedImage;
+    return decodedImage;
+}
+
+DecodedImage *getImage2Data() {
+    auto decodedImage = getImageData("../test2.png");
+    textureImage2Global = decodedImage;
     return decodedImage;
 }
