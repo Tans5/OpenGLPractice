@@ -29,6 +29,7 @@ set_target_properties( libglfw3.a
 
 # GLFW End
 
+#OpenGLPractice Start
 add_executable(OpenGLPractice
         main.cpp
         src/glad.c
@@ -44,3 +45,13 @@ target_link_libraries(
         libglfw3
         libglfw3.a
 )
+#OpenGLPractice End
+
+#MatrixTest Start
+add_executable(MatrixTest
+        matrixTest.cpp)
+target_include_directories(
+        MatrixTest PUBLIC
+        include
+)
+#MatrixTest End

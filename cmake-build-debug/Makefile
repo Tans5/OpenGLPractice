@@ -131,6 +131,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named MatrixTest
+
+# Build rule for target.
+MatrixTest: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 MatrixTest
+.PHONY : MatrixTest
+
+# fast build rule for target.
+MatrixTest/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MatrixTest.dir/build.make CMakeFiles/MatrixTest.dir/build
+.PHONY : MatrixTest/fast
+
+#=============================================================================
 # Target rules for targets named OpenGLPractice
 
 # Build rule for target.
@@ -169,6 +182,33 @@ main.s: main.cpp.s
 main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGLPractice.dir/build.make CMakeFiles/OpenGLPractice.dir/main.cpp.s
 .PHONY : main.cpp.s
+
+matrixTest.o: matrixTest.cpp.o
+
+.PHONY : matrixTest.o
+
+# target to build an object file
+matrixTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MatrixTest.dir/build.make CMakeFiles/MatrixTest.dir/matrixTest.cpp.o
+.PHONY : matrixTest.cpp.o
+
+matrixTest.i: matrixTest.cpp.i
+
+.PHONY : matrixTest.i
+
+# target to preprocess a source file
+matrixTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MatrixTest.dir/build.make CMakeFiles/MatrixTest.dir/matrixTest.cpp.i
+.PHONY : matrixTest.cpp.i
+
+matrixTest.s: matrixTest.cpp.s
+
+.PHONY : matrixTest.s
+
+# target to generate assembly for a file
+matrixTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MatrixTest.dir/build.make CMakeFiles/MatrixTest.dir/matrixTest.cpp.s
+.PHONY : matrixTest.cpp.s
 
 src/glad.o: src/glad.c.o
 
@@ -232,10 +272,14 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... MatrixTest"
 	@echo "... OpenGLPractice"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... matrixTest.o"
+	@echo "... matrixTest.i"
+	@echo "... matrixTest.s"
 	@echo "... src/glad.o"
 	@echo "... src/glad.i"
 	@echo "... src/glad.s"
