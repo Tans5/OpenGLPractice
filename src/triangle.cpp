@@ -23,9 +23,12 @@ const char *vertexShaderSource = "#version 330 core\n"
                                  "out vec4 pColor;\n"
                                  "out vec2 TexCoord;\n"
                                  "uniform mat4 transform;\n"
+                                 "uniform mat4 model;\n"
+                                 "uniform mat4 view;\n"
+                                 "uniform mat4 projection;\n"
                                  "void main()\n"
                                  "{\n"
-                                 "   gl_Position = transform * vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+                                 "   gl_Position = projection * view * model * transform * vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
                                  "   pColor = vec4(aColor, 1.0);\n"
                                  "   TexCoord = aTexCoord;\n"
                                  "}\0";
@@ -177,14 +180,24 @@ void drawTriangle() {
     int vertexColorLocation = glGetUniformLocation(programGlobal, "myColor");
     glUniform4f(vertexColorLocation, redValue, greenValue, blueValue, 1.0f);
 
+    // 3D 矩阵变换
+    glm::mat4 model = glm::mat4(1.0f);
+    model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+    glm::mat4 view = glm::mat4(1.0f);
+    view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+    glm::mat4 projection;
+    projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
+    glUniformMatrix4fv(glGetUniformLocation(programGlobal, "model"), 1, GL_FALSE, glm::value_ptr(model));
+    glUniformMatrix4fv(glGetUniformLocation(programGlobal, "view"), 1, GL_FALSE, glm::value_ptr(view));
+    glUniformMatrix4fv(glGetUniformLocation(programGlobal, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+
     // 坐标变换
     glm::mat4 transform = glm::mat4(1.0f);
-
     // 放缩
-    float scale = abs(cos(timeValue)) + 0.5f;
-    transform = glm::scale(transform, glm::vec3(scale, scale, 0));
-    // 绕 z 轴 旋转
-    transform = glm::rotate(transform, glm::radians(timeValue * 100), glm::vec3(0.0f, 1.0f, 0.0f));
+//    float scale = abs(cos(timeValue)) + 0.5f;
+//    transform = glm::scale(transform, glm::vec3(scale, scale, 0));
+    // 旋转
+    transform = glm::rotate(transform, glm::radians(timeValue * 100), glm::vec3(1.0f, 0.0f, 0.0f));
     glUniformMatrix4fv(glGetUniformLocation(programGlobal, "transform"), 1, GL_FALSE, glm::value_ptr(transform));
 
     // 纹理处理
