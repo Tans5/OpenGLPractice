@@ -2,7 +2,6 @@
 #include "GLFW/glfw3.h"
 #include "glad/glad.h"
 #include "triangle.h"
-#include "OpenGL/OpenGL.h"
 #include "unistd.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {

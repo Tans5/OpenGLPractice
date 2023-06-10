@@ -3,7 +3,6 @@
 //
 
 #include <glad/glad.h>
-#include "OpenGL/OpenGL.h"
 #include "GLFW/glfw3.h"
 #include "stdio.h"
 #include "triangle.h"

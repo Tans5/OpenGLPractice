@@ -16,16 +16,18 @@ add_library(
         include/triangle.h include/stb_image.h)
 set_target_properties( libglfw3
         PROPERTIES IMPORTED_LOCATION
-        ${CMAKE_CURRENT_SOURCE_DIR}/libs/lib-arm64/libglfw.3.dylib )
+#       ${CMAKE_CURRENT_SOURCE_DIR}/libs/mac/lib-arm64/libglfw.3.dylib
+        ${CMAKE_CURRENT_SOURCE_DIR}/libs/linux/lib-x86_64/libglfw.so.3.4
+        )
 
-add_library(
-        libglfw3.a
-        STATIC
-        IMPORTED
-)
-set_target_properties( libglfw3.a
-        PROPERTIES IMPORTED_LOCATION
-        ${CMAKE_CURRENT_SOURCE_DIR}/libs/lib-arm64/libglfw3.a)
+#add_library(
+#        libglfw3.a
+#        STATIC
+#        IMPORTED
+#)
+#set_target_properties( libglfw3.a
+#        PROPERTIES IMPORTED_LOCATION
+#        libs/mac/lib-arm64/libglfw3.a)
 
 # GLFW End
 
@@ -42,9 +44,7 @@ target_include_directories(
 target_link_libraries(
         OpenGLPractice
         OpenGL::GL
-        libglfw3
-        libglfw3.a
-)
+        libglfw3)
 #OpenGLPractice End
 
 #MatrixTest Start

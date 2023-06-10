@@ -1,4 +1,4 @@
-/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/CMakeFiles/MatrixTest.dir
-/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/CMakeFiles/OpenGLPractice.dir
+/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/CMakeFiles/MatrixTest.dir
+/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/CMakeFiles/OpenGLPractice.dir

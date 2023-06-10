@@ -4,13 +4,13 @@
 CMakeFiles/OpenGLPractice.dir/src/glad.c.o
  ../include/KHR/khrplatform.h
  ../include/glad/glad.h
- /Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/glad.c
+ /home/tans/IdeaProjects/OpenGLPractice/src/glad.c
 CMakeFiles/OpenGLPractice.dir/main.cpp.o
  ../include/GLFW/glfw3.h
  ../include/KHR/khrplatform.h
  ../include/glad/glad.h
  ../include/triangle.h
- /Users/pengcheng.tan/CLionProjects/OpenGLPractice/main.cpp
+ /home/tans/IdeaProjects/OpenGLPractice/main.cpp
 CMakeFiles/OpenGLPractice.dir/src/triangle.cpp.o
  ../include/GLFW/glfw3.h
  ../include/KHR/khrplatform.h
@@ -218,4 +218,4 @@ CMakeFiles/OpenGLPractice.dir/src/triangle.cpp.o
  ../include/glm/vector_relational.hpp
  ../include/stb_image.h
  ../include/triangle.h
- /Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/triangle.cpp
+ /home/tans/IdeaProjects/OpenGLPractice/src/triangle.cpp
