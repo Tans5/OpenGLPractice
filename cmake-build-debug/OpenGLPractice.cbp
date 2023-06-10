@@ -8,141 +8,139 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug"/>
+				<Option working_dir="/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug"/>
+				<Option working_dir="/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="MatrixTest">
-				<Option output="/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/MatrixTest" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug"/>
+				<Option output="/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/MatrixTest" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/tans/IdeaProjects/OpenGLPractice/include"/>
-					<Add directory="/usr/include/c++/11"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
-					<Add directory="/usr/include/c++/11/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/Users/pengcheng.tan/CLionProjects/OpenGLPractice/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/13.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 MatrixTest"/>
-					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 MatrixTest"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="MatrixTest/fast">
-				<Option output="/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/MatrixTest" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug"/>
+				<Option output="/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/MatrixTest" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/tans/IdeaProjects/OpenGLPractice/include"/>
-					<Add directory="/usr/include/c++/11"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
-					<Add directory="/usr/include/c++/11/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/Users/pengcheng.tan/CLionProjects/OpenGLPractice/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/13.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 MatrixTest/fast"/>
-					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 MatrixTest/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="OpenGLPractice">
-				<Option output="/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/OpenGLPractice" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug"/>
+				<Option output="/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/OpenGLPractice" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/tans/IdeaProjects/OpenGLPractice/include"/>
-					<Add directory="/usr/include/c++/11"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
-					<Add directory="/usr/include/c++/11/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/Users/pengcheng.tan/CLionProjects/OpenGLPractice/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/OpenGL.framework"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/13.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 OpenGLPractice"/>
-					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 OpenGLPractice"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="OpenGLPractice/fast">
-				<Option output="/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/OpenGLPractice" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug"/>
+				<Option output="/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/OpenGLPractice" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/tans/IdeaProjects/OpenGLPractice/include"/>
-					<Add directory="/usr/include/c++/11"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
-					<Add directory="/usr/include/c++/11/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/Users/pengcheng.tan/CLionProjects/OpenGLPractice/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/OpenGL.framework"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/13.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 OpenGLPractice/fast"/>
-					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j16 -f &quot;/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 OpenGLPractice/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/tans/IdeaProjects/OpenGLPractice/main.cpp">
+		<Unit filename="/Users/pengcheng.tan/CLionProjects/OpenGLPractice/main.cpp">
 			<Option target="OpenGLPractice"/>
 		</Unit>
-		<Unit filename="/home/tans/IdeaProjects/OpenGLPractice/matrixTest.cpp">
+		<Unit filename="/Users/pengcheng.tan/CLionProjects/OpenGLPractice/matrixTest.cpp">
 			<Option target="MatrixTest"/>
 		</Unit>
-		<Unit filename="/home/tans/IdeaProjects/OpenGLPractice/src/glad.c">
+		<Unit filename="/Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/glad.c">
 			<Option target="OpenGLPractice"/>
 		</Unit>
-		<Unit filename="/home/tans/IdeaProjects/OpenGLPractice/src/triangle.cpp">
+		<Unit filename="/Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/triangle.cpp">
 			<Option target="OpenGLPractice"/>
 		</Unit>
-		<Unit filename="/home/tans/IdeaProjects/OpenGLPractice/CMakeLists.txt">
+		<Unit filename="/Users/pengcheng.tan/CLionProjects/OpenGLPractice/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

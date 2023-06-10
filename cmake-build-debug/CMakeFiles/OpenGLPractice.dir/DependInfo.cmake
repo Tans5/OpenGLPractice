@@ -5,23 +5,25 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/tans/IdeaProjects/OpenGLPractice/src/glad.c" "/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/CMakeFiles/OpenGLPractice.dir/src/glad.c.o"
+  "/Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/glad.c" "/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/CMakeFiles/OpenGLPractice.dir/src/glad.c.o"
   )
-set(CMAKE_C_COMPILER_ID "GNU")
+set(CMAKE_C_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
   "../include"
+  "/Library/Developer/CommandLineTools/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/OpenGL.framework"
   )
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/tans/IdeaProjects/OpenGLPractice/main.cpp" "/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/CMakeFiles/OpenGLPractice.dir/main.cpp.o"
-  "/home/tans/IdeaProjects/OpenGLPractice/src/triangle.cpp" "/home/tans/IdeaProjects/OpenGLPractice/cmake-build-debug/CMakeFiles/OpenGLPractice.dir/src/triangle.cpp.o"
+  "/Users/pengcheng.tan/CLionProjects/OpenGLPractice/main.cpp" "/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/CMakeFiles/OpenGLPractice.dir/main.cpp.o"
+  "/Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/triangle.cpp" "/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/CMakeFiles/OpenGLPractice.dir/src/triangle.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "GNU")
+set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../include"
+  "/Library/Developer/CommandLineTools/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/OpenGL.framework"
   )
 
 # Targets to which this target links.

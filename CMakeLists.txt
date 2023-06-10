@@ -16,8 +16,8 @@ add_library(
         include/triangle.h include/stb_image.h)
 set_target_properties( libglfw3
         PROPERTIES IMPORTED_LOCATION
-#       ${CMAKE_CURRENT_SOURCE_DIR}/libs/mac/lib-arm64/libglfw.3.dylib
-        ${CMAKE_CURRENT_SOURCE_DIR}/libs/linux/lib-x86_64/libglfw.so.3.4
+       ${CMAKE_CURRENT_SOURCE_DIR}/libs/mac/lib-arm64/libglfw.3.dylib
+#        ${CMAKE_CURRENT_SOURCE_DIR}/libs/linux/lib-x86_64/libglfw.so.3.4
         )
 
 #add_library(
@@ -35,7 +35,9 @@ set_target_properties( libglfw3
 add_executable(OpenGLPractice
         main.cpp
         src/glad.c
-        src/triangle.cpp)
+        src/triangle.cpp
+#        src/glad_linux.c
+        src/glad.c)
 
 target_include_directories(
         OpenGLPractice PUBLIC
