@@ -7,6 +7,7 @@ CMakeFiles/OpenGLPractice.dir/src/glad.c.o: ../src/glad.c
 
 CMakeFiles/OpenGLPractice.dir/main.cpp.o: ../include/GLFW/glfw3.h
 CMakeFiles/OpenGLPractice.dir/main.cpp.o: ../include/KHR/khrplatform.h
+CMakeFiles/OpenGLPractice.dir/main.cpp.o: ../include/cube.h
 CMakeFiles/OpenGLPractice.dir/main.cpp.o: ../include/glad/glad.h
 CMakeFiles/OpenGLPractice.dir/main.cpp.o: ../include/image_load.h
 CMakeFiles/OpenGLPractice.dir/main.cpp.o: ../include/triangle.h
@@ -19,6 +20,7 @@ CMakeFiles/OpenGLPractice.dir/src/compile_shader_program.cpp.o: ../src/compile_s
 
 CMakeFiles/OpenGLPractice.dir/src/cube.cpp.o: ../include/GLFW/glfw3.h
 CMakeFiles/OpenGLPractice.dir/src/cube.cpp.o: ../include/KHR/khrplatform.h
+CMakeFiles/OpenGLPractice.dir/src/cube.cpp.o: ../include/compile_shader_program.h
 CMakeFiles/OpenGLPractice.dir/src/cube.cpp.o: ../include/cube.h
 CMakeFiles/OpenGLPractice.dir/src/cube.cpp.o: ../include/glad/glad.h
 CMakeFiles/OpenGLPractice.dir/src/cube.cpp.o: ../include/glm/common.hpp
@@ -223,7 +225,6 @@ CMakeFiles/OpenGLPractice.dir/src/cube.cpp.o: ../include/glm/vec3.hpp
 CMakeFiles/OpenGLPractice.dir/src/cube.cpp.o: ../include/glm/vec4.hpp
 CMakeFiles/OpenGLPractice.dir/src/cube.cpp.o: ../include/glm/vector_relational.hpp
 CMakeFiles/OpenGLPractice.dir/src/cube.cpp.o: ../include/image_load.h
-CMakeFiles/OpenGLPractice.dir/src/cube.cpp.o: ../include/triangle.h
 CMakeFiles/OpenGLPractice.dir/src/cube.cpp.o: ../src/cube.cpp
 
 CMakeFiles/OpenGLPractice.dir/src/image_load.cpp.o: ../include/image_load.h

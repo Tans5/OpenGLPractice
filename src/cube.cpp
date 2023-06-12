@@ -4,12 +4,11 @@
 #include "cube.h"
 #include <glad/glad.h>
 #include "GLFW/glfw3.h"
-#include "stdio.h"
-#include "triangle.h"
-#include "math.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include "compile_shader_program.h"
+#include "image_load.h"
 
 // 顶点着色器源码
 const char *cubeVertexShaderSource = "#version 330 core\n"
@@ -23,8 +22,9 @@ const char *cubeVertexShaderSource = "#version 330 core\n"
                                  "uniform mat4 projection;\n"
                                  "void main()\n"
                                  "{ \n"
-                                 "      glPosition = projection * view * model * transform * vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-                                 "      TexCoord = aTextCoord;\n"
+                                 "      gl_Position = projection * view * model * transform * vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+//                                   "      gl_Position = vec4(aPos, 1.0);\n"
+                                 "      TexCoord = aTexCoord;\n"
                                  "} \n";
 
 
@@ -36,9 +36,189 @@ const char *cubeFragmentShaderSource = "#version 330 core\n"
                                    "void main()\n"
                                    "{ \n"
                                    "    FragColor = texture(Texture, TexCoord);\n"
+//                                     "FragColor = vec4(1.0, 0.0, 0.0, 1.0);\n"
                                    "} \n";
 
+GLint cubeProgram = SHADER_COMPILE_FAIL;
+DecodedImage * shaderImage = NULL;
+
+
+void createCubeProgram() {
+    cubeProgram = compileShaderProgram(cubeVertexShaderSource, cubeFragmentShaderSource);
+}
+
+void loadImageData() {
+    shaderImage = getImageData("../container.jpeg");
+}
+
 void drawCube() {
+    if (cubeProgram == SHADER_COMPILE_FAIL) {
+        createCubeProgram();
+    }
+    if (cubeProgram == SHADER_COMPILE_FAIL) {
+        return;
+    }
+    if (shaderImage == NULL) {
+        loadImageData();
+    }
+    if (shaderImage == NULL) {
+        return;
+    }
+
+    // 正方体 6 个面，每个面 2 个三角形，每个三角形 3 个点，所以一共 36 个点
+//    float vertices[] = {
+//            // 坐标               // 纹理坐标
+//            0.5f, 0.5f, 0.0f,    1.0f, 0.0f, // 底面 右上角
+//            0.5f, -0.5f, 0.0f,   1.0f, 1.0f, // 底面 右下角
+//            -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, // 底面 左下角
+//            -0.5f, 0.5f, 0.0f,   0.0f, 0.0f, // 底面 左上角
+//
+//            0.5f, 0.5f, 1.0f,    1.0f, 0.0f, // 上面 右上角
+//            0.5f, -0.5f, 1.0f,   1.0f, 1.0f, // 上面 右下角
+//            -0.5f, -0.5f, 1.0f,  0.0f, 1.0f, // 上面 左下角
+//            -0.5f, 0.5f, 1.0f,   0.0f, 0.0f, // 上面 左上角
+//    };
+
+//    // 12 个三角形
+//    unsigned int indices[] = {
+//            // 底
+//            0, 1, 3,
+//            1, 2, 3,
+//
+//            // 上
+//            4, 5, 7,
+//            5, 6, 7,
+//
+//            // 前
+//            1, 2, 5,
+//            2, 5, 6,
+//
+//            // 后
+//            0, 3, 4,
+//            3, 4, 7,
+//
+//            // 左
+//            2, 3, 7,
+//            2, 6, 7,
+//
+//            // 右
+//            0, 1, 4,
+//            1, 4, 5,
+//    };
+
+    float vertices[] = {
+            -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+            0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
+            0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+            0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+            -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+
+            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+            0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+            0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+            0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+            -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
+            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+
+            -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+            -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+            -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+            0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+            0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+            0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+            0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+            0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+            0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+            0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+            0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+            0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+
+            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+            0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+            0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+            0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+            -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
+            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
+    };
+
+    // Z 缓冲
+    glEnable(GL_DEPTH_TEST);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    // 顶点缓冲对象
+    GLuint VBO;
+    glGenBuffers(1, &VBO);
+    // 顶点数组对象
+    GLuint VAO;
+    glGenVertexArrays(1, &VAO);
+    glBindVertexArray(VAO);
+
+//    // 元素缓冲对象
+//    GLuint EBO;
+//    glGenBuffers(1, &EBO);
+
+    // 绑定缓冲数据
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    // 设置顶点属性
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *) (3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+
+
+    // 使用程序
+    glUseProgram(cubeProgram);
+
+    // 3D 矩阵变换
+    glm::mat4 model = glm::mat4(1.0f);
+    model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+    glm::mat4 view = glm::mat4(1.0f);
+    view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+    glm::mat4 projection;
+    projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
+    glUniformMatrix4fv(glGetUniformLocation(cubeProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
+    glUniformMatrix4fv(glGetUniformLocation(cubeProgram, "view"), 1, GL_FALSE, glm::value_ptr(view));
+    glUniformMatrix4fv(glGetUniformLocation(cubeProgram, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+
+    glm::mat4 transform = glm::mat4(1.0f);
+    float timeValue = glfwGetTime();
+    // 旋转
+    transform = glm::rotate(transform, glm::radians(timeValue * 100), glm::vec3(0.5f, 1.0f, 0.0f));
+    glUniformMatrix4fv(glGetUniformLocation(cubeProgram, "transform"), 1, GL_FALSE, glm::value_ptr(transform));
+
+    // 纹理处理
+    GLuint texture;
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    // set the texture wrapping parameters
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// set texture wrapping to GL_REPEAT (default wrapping method)
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    // set texture filtering parameters
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glGenerateMipmap(GL_TEXTURE_2D);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, shaderImage->width, shaderImage->height, 0, GL_RGB, GL_UNSIGNED_BYTE,
+                 shaderImage->data);
+
+//    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+//    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+//    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, VAO);
+    glDrawArrays(GL_TRIANGLES, 0, 36);
+//    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, NULL);
 
 }
 

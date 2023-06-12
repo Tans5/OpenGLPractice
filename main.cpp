@@ -2,6 +2,7 @@
 #include "GLFW/glfw3.h"
 #include "glad/glad.h"
 #include "triangle.h"
+#include "cube.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
     glViewport(0, 0, width, height);
@@ -43,7 +44,8 @@ int main() {
         glClearColor(0.6f, 0.6f, 0.6f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        drawTriangle();
+        // drawTriangle();
+        drawCube();
 
         glfwSwapBuffers(window);
         glfwPollEvents();
