@@ -68,29 +68,22 @@ void createTriangleProgram() {
     programGlobal = compileShaderProgram(triangleVertexShaderSource, triangleFragmentShaderSource);
 }
 
-/**
- * 绘制三角形
- */
-void drawTriangle() {
-    if (programGlobal == SHADER_COMPILE_FAIL) {
-        createTriangleProgram();
-    }
-    if (programGlobal == SHADER_COMPILE_FAIL) {
-        return;
-    }
+typedef struct {
+    GLuint VBO;
+    GLuint VAO;
+    GLuint EBO;
+    GLuint texture1;
+    GLuint texture2;
+} DrawTriangleBuffer;
 
+DrawTriangleBuffer * triangleBuffer = NULL;
+
+void createTriangleBuffer() {
     if (textureImage1Global == NULL) {
         getImage1Data();
     }
-    if (textureImage1Global == NULL) {
-        return;
-    }
-
     if (textureImage2Global == NULL) {
         getImage2Data();
-    }
-    if (textureImage2Global == NULL) {
-        return;
     }
 
     // 坐标是从 -1 到 1
@@ -102,23 +95,17 @@ void drawTriangle() {
             -0.5f, 0.5f, 0.0f,  0.5f, 0.5f, 0.5f,   0.0f, 0.0f    // 左上角
     };
 
-    // 顶点缓冲对象：Vertex Buffer Object，VBO
-    GLuint VBO;
-    glGenBuffers(1, &VBO);
     // 顶点数组对象：Vertex Array Object，VAO
     GLuint VAO;
     glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);
 
-    // 元素缓冲对象：Element Buffer Object，EBO 或 索引缓冲对象 Index Buffer Object，IBO
-    GLuint EBO;
-    glGenBuffers(1, &EBO);
-
-
+    // 顶点缓冲对象：Vertex Buffer Object，VBO
+    GLuint VBO;
+    glGenBuffers(1, &VBO);
     // 绑定数据到 VBO
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
     // 设置顶点属性
     // 坐标
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *) 0);
@@ -130,6 +117,69 @@ void drawTriangle() {
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *) (6 * sizeof(float)));
     glEnableVertexAttribArray(2);
 
+    // 元素缓冲对象：Element Buffer Object，EBO 或 索引缓冲对象 Index Buffer Object，IBO
+    GLuint EBO;
+    glGenBuffers(1, &EBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    unsigned int indices[] = {
+            // 注意索引从0开始!
+            // 此例的索引(0,1,2,3)就是顶点数组vertices的下标，
+            // 这样可以由下标代表顶点组合成矩形
+            0, 1, 3, // 第一个三角形
+            1, 2, 3,  // 第二个三角形
+    };
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+    // 纹理处理
+    // 纹理1
+    GLuint texture1;
+    glGenTextures(1, &texture1);
+    glBindTexture(GL_TEXTURE_2D, texture1);
+    // set the texture1 wrapping parameters
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// set texture1 wrapping to GL_REPEAT (default wrapping method)
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    // set texture1 filtering parameters
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureImage1Global->width, textureImage1Global->height, 0, GL_RGBA, GL_UNSIGNED_BYTE,
+                 textureImage1Global->data);
+
+    // 纹理2
+    GLuint texture2;
+    glGenTextures(1, &texture2);
+    glBindTexture(GL_TEXTURE_2D, texture2);
+    // set the texture1 wrapping parameters
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// set texture1 wrapping to GL_REPEAT (default wrapping method)
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    // set texture1 filtering parameters
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureImage2Global->width, textureImage2Global->height, 0, GL_RGBA, GL_UNSIGNED_BYTE,
+                 textureImage2Global->data);
+    auto * buffer = new DrawTriangleBuffer;
+    buffer->VBO = VBO;
+    buffer->VAO = VAO;
+    buffer->EBO = EBO;
+    buffer->texture1 = texture1;
+    buffer->texture2 = texture2;
+    triangleBuffer = buffer;
+}
+
+/**
+ * 绘制三角形
+ */
+void drawTriangle() {
+    if (programGlobal == SHADER_COMPILE_FAIL) {
+        createTriangleProgram();
+    }
+    if (programGlobal == SHADER_COMPILE_FAIL) {
+        return;
+    }
+    if (triangleBuffer == NULL) {
+        createTriangleBuffer();
+    }
     // 使用编译好的渲染程序
     glUseProgram(programGlobal);
     float timeValue = glfwGetTime();
@@ -160,62 +210,21 @@ void drawTriangle() {
     transform = glm::rotate(transform, glm::radians(timeValue * 100), glm::vec3(1.0f, 0.0f, 0.0f));
     glUniformMatrix4fv(glGetUniformLocation(programGlobal, "transform"), 1, GL_FALSE, glm::value_ptr(transform));
 
-    // 纹理处理
-    // 纹理1
-    GLuint texture;
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_2D, texture);
-
-    // set the texture wrapping parameters
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// set texture wrapping to GL_REPEAT (default wrapping method)
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    // set texture filtering parameters
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glGenerateMipmap(GL_TEXTURE_2D);
-
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureImage1Global->width, textureImage1Global->height, 0, GL_RGBA, GL_UNSIGNED_BYTE,
-                 textureImage1Global->data);
-
-    // 纹理2
-    GLuint texture2;
-    glGenTextures(1, &texture2);
-    glBindTexture(GL_TEXTURE_2D, texture2);
-
-    // set the texture wrapping parameters
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// set texture wrapping to GL_REPEAT (default wrapping method)
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    // set texture filtering parameters
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glGenerateMipmap(GL_TEXTURE_2D);
-
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureImage2Global->width, textureImage2Global->height, 0, GL_RGBA, GL_UNSIGNED_BYTE,
-                 textureImage2Global->data);
-
+    glBindTexture(GL_TEXTURE_2D, triangleBuffer->texture1);
     glActiveTexture(GL_TEXTURE0); // 激活纹理
+    glUniform1i(glGetUniformLocation(programGlobal, "Texture"), 0); // 绑定纹理到片段着色器到 Texture 变量
+    glBindTexture(GL_TEXTURE_2D, triangleBuffer->texture2);
     glActiveTexture(GL_TEXTURE1);
-    glUniform1i(glGetUniformLocation(programGlobal, "Texture"), 1); // 绑定纹理到片段着色器到 Texture 变量
-    glUniform1i(glGetUniformLocation(programGlobal, "Texture2"), 0); // 绑定纹理到片段着色器到 Texture2 变量
+    glUniform1i(glGetUniformLocation(programGlobal, "Texture2"), 1); // 绑定纹理到片段着色器到 Texture2 变量
 
 //    glBindVertexArray(VAO);
 
     // 绘制，第一个参数表示 图元，第二个参数索引开始位置，第三个参数顶点个数
     // glDrawArrays(GL_TRIANGLES, 0, 3);
 
-    unsigned int indices[] = {
-            // 注意索引从0开始!
-            // 此例的索引(0,1,2,3)就是顶点数组vertices的下标，
-            // 这样可以由下标代表顶点组合成矩形
-            0, 1, 3, // 第一个三角形
-            1, 2, 3,  // 第二个三角形
-    };
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
     // 不填充，
     // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBindTexture(GL_TEXTURE_2D, texture);
+    glBindTexture(GL_TEXTURE_2D, triangleBuffer->texture1);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, triangleBuffer->EBO);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, NULL);
 }

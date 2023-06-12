@@ -229,7 +229,7 @@ void drawCube() {
     // 旋转
     transform = glm::rotate(transform, glm::radians(timeValue * 100), glm::vec3(0.5f, 1.0f, 0.0f));
     glUniformMatrix4fv(glGetUniformLocation(cubeProgram, "transform"), 1, GL_FALSE, glm::value_ptr(transform));
-    glBindTexture(GL_TEXTURE_2D, drawCubeBuffer->texture);
+//    glBindTexture(GL_TEXTURE_2D, drawCubeBuffer->texture);
 
     glm::vec3 cubePositions[] = {
             glm::vec3( 0.0f,  0.0f,  0.0f),
