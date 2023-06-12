@@ -60,6 +60,12 @@ inttypes.h
 stdint.h
 -
 
+../include/compile_shader_program.h
+glad/glad.h
+../include/glad/glad.h
+
+../include/cube.h
+
 ../include/glad/glad.h
 KHR/khrplatform.h
 -
@@ -1506,23 +1512,9 @@ arm_neon.h
 image_load.h
 ../include/image_load.h
 
-/Users/pengcheng.tan/CLionProjects/OpenGLPractice/main.cpp
-iostream
--
-GLFW/glfw3.h
-/Users/pengcheng.tan/CLionProjects/OpenGLPractice/GLFW/glfw3.h
-glad/glad.h
-/Users/pengcheng.tan/CLionProjects/OpenGLPractice/glad/glad.h
-triangle.h
-/Users/pengcheng.tan/CLionProjects/OpenGLPractice/triangle.h
-
-/Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/image_load.cpp
-stb_image.h
--
-image_load.h
-/Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/image_load.h
-
-/Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/triangle.cpp
+/Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/cube.cpp
+cube.h
+/Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/cube.h
 glad/glad.h
 -
 GLFW/glfw3.h
@@ -1539,6 +1531,24 @@ glm/gtc/matrix_transform.hpp
 -
 glm/gtc/type_ptr.hpp
 -
+
+/Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/triangle.cpp
+glad/glad.h
+-
+GLFW/glfw3.h
+/Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/GLFW/glfw3.h
+triangle.h
+/Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/triangle.h
+math.h
+/Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/math.h
+glm/glm.hpp
+-
+glm/gtc/matrix_transform.hpp
+-
+glm/gtc/type_ptr.hpp
+-
+compile_shader_program.h
+/Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/compile_shader_program.h
 stb_image.h
 /Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/stb_image.h
 

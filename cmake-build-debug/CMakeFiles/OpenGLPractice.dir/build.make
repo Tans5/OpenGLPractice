@@ -129,12 +129,40 @@ CMakeFiles/OpenGLPractice.dir/src/image_load.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenGLPractice.dir/src/image_load.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/image_load.cpp -o CMakeFiles/OpenGLPractice.dir/src/image_load.cpp.s
 
+CMakeFiles/OpenGLPractice.dir/src/cube.cpp.o: CMakeFiles/OpenGLPractice.dir/flags.make
+CMakeFiles/OpenGLPractice.dir/src/cube.cpp.o: ../src/cube.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/OpenGLPractice.dir/src/cube.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpenGLPractice.dir/src/cube.cpp.o -c /Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/cube.cpp
+
+CMakeFiles/OpenGLPractice.dir/src/cube.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenGLPractice.dir/src/cube.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/cube.cpp > CMakeFiles/OpenGLPractice.dir/src/cube.cpp.i
+
+CMakeFiles/OpenGLPractice.dir/src/cube.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenGLPractice.dir/src/cube.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/cube.cpp -o CMakeFiles/OpenGLPractice.dir/src/cube.cpp.s
+
+CMakeFiles/OpenGLPractice.dir/src/compile_shader_program.cpp.o: CMakeFiles/OpenGLPractice.dir/flags.make
+CMakeFiles/OpenGLPractice.dir/src/compile_shader_program.cpp.o: ../src/compile_shader_program.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/OpenGLPractice.dir/src/compile_shader_program.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpenGLPractice.dir/src/compile_shader_program.cpp.o -c /Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/compile_shader_program.cpp
+
+CMakeFiles/OpenGLPractice.dir/src/compile_shader_program.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenGLPractice.dir/src/compile_shader_program.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/compile_shader_program.cpp > CMakeFiles/OpenGLPractice.dir/src/compile_shader_program.cpp.i
+
+CMakeFiles/OpenGLPractice.dir/src/compile_shader_program.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenGLPractice.dir/src/compile_shader_program.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/compile_shader_program.cpp -o CMakeFiles/OpenGLPractice.dir/src/compile_shader_program.cpp.s
+
 # Object files for target OpenGLPractice
 OpenGLPractice_OBJECTS = \
 "CMakeFiles/OpenGLPractice.dir/main.cpp.o" \
 "CMakeFiles/OpenGLPractice.dir/src/glad.c.o" \
 "CMakeFiles/OpenGLPractice.dir/src/triangle.cpp.o" \
-"CMakeFiles/OpenGLPractice.dir/src/image_load.cpp.o"
+"CMakeFiles/OpenGLPractice.dir/src/image_load.cpp.o" \
+"CMakeFiles/OpenGLPractice.dir/src/cube.cpp.o" \
+"CMakeFiles/OpenGLPractice.dir/src/compile_shader_program.cpp.o"
 
 # External object files for target OpenGLPractice
 OpenGLPractice_EXTERNAL_OBJECTS =
@@ -143,11 +171,13 @@ OpenGLPractice: CMakeFiles/OpenGLPractice.dir/main.cpp.o
 OpenGLPractice: CMakeFiles/OpenGLPractice.dir/src/glad.c.o
 OpenGLPractice: CMakeFiles/OpenGLPractice.dir/src/triangle.cpp.o
 OpenGLPractice: CMakeFiles/OpenGLPractice.dir/src/image_load.cpp.o
+OpenGLPractice: CMakeFiles/OpenGLPractice.dir/src/cube.cpp.o
+OpenGLPractice: CMakeFiles/OpenGLPractice.dir/src/compile_shader_program.cpp.o
 OpenGLPractice: CMakeFiles/OpenGLPractice.dir/build.make
 OpenGLPractice: /Library/Developer/CommandLineTools/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd
 OpenGLPractice: ../libs/mac/lib-arm64/libglfw.3.dylib
 OpenGLPractice: CMakeFiles/OpenGLPractice.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable OpenGLPractice"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable OpenGLPractice"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/OpenGLPractice.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

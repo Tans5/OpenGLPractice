@@ -4,18 +4,18 @@
 
 #include <glad/glad.h>
 #include "GLFW/glfw3.h"
-#include "stdio.h"
 #include "triangle.h"
 #include "math.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include "compile_shader_program.h"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
 // 顶点着色器 GLSL 源码
-const char *vertexShaderSource = "#version 330 core\n"
+const char *triangleVertexShaderSource = "#version 330 core\n"
                                  "layout (location = 0) in vec3 aPos;\n" // 位置, 顶点着色器固定要加上 layout (location = 0)
                                  "layout (location = 1) in vec3 aColor;\n" // 颜色
                                  "layout (location = 2) in vec2 aTexCoord;\n"
@@ -33,7 +33,7 @@ const char *vertexShaderSource = "#version 330 core\n"
                                  "}\0";
 
 // 片段着色器 GLSL 源码
-const char *fragmentShaderSource = "#version 330 core\n"
+const char *triangleFragmentShaderSource = "#version 330 core\n"
                                    "in vec4 pColor;\n"
                                    "in vec2 TexCoord;\n"
                                    "uniform vec4 myColor = vec4(0.0, 1.0, 0.0, 1.0);\n" // 全局变量
@@ -46,75 +46,36 @@ const char *fragmentShaderSource = "#version 330 core\n"
 //                                    "     FragColor = texture(Texture, TexCoord);"
                                    "}\n";
 
-const GLuint FAIL = -1;
-
-GLuint programGlobal = -1;
+GLuint programGlobal = SHADER_COMPILE_FAIL;
 
 DecodedImage *textureImage1Global = NULL; // 纹理图片
 DecodedImage *textureImage2Global = NULL; // 纹理图片
 
-/**
- * 生成三角形的 Shader Program.
- * @return 成功返回 三角形 program，错误返回 -1
- */
-GLuint createTriangleProgram() {
-    // 编译顶点着色器
-    GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-    glCompileShader(vertexShader);
-    GLint vertexCompileResult;
-    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &vertexCompileResult);
-    if (!vertexCompileResult) {
-        GLchar log[512];
-        glGetShaderInfoLog(vertexShader, 512, NULL, log);
-        printf("Compile vertex shader fail: %s \n", log);
-        glDeleteShader(vertexShader);
-        return FAIL;
-    }
 
-    // 编译片段着色器
-    GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-    glCompileShader(fragmentShader);
-    GLint fragmentCompileResult;
-    glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &fragmentCompileResult);
-    if (!fragmentCompileResult) {
-        GLchar log[512];
-        glGetShaderInfoLog(vertexShader, 512, NULL, log);
-        printf("Compile fragment shader fail: %s \n", log);
-        glDeleteShader(vertexShader);
-        glDeleteShader(fragmentShader);
-        return FAIL;
-    }
+DecodedImage *getImage1Data() {
+    auto decodedImage = getImageData("../sasuke.png");
+    textureImage1Global = decodedImage;
+    return decodedImage;
+}
 
-    // 链接顶点着色器和片段着色器
-    GLuint program = glCreateProgram();
-    glAttachShader(program, vertexShader);
-    glAttachShader(program, fragmentShader);
-    glLinkProgram(program);
-    glDeleteShader(vertexShader);
-    glDeleteShader(fragmentShader);
-    GLint programLinkResult;
-    glGetProgramiv(program, GL_LINK_STATUS, &programLinkResult);
-    if (!programLinkResult) {
-        GLchar  log[512];
-        glGetProgramInfoLog(program, 512, NULL, log);
-        printf("Link program fail: %s", log);
-        return FAIL;
-    }
-    printf("Create shader program success. \n");
-    programGlobal = program;
-    return program;
+DecodedImage *getImage2Data() {
+    auto decodedImage = getImageData("../emoji.png");
+    textureImage2Global = decodedImage;
+    return decodedImage;
+}
+
+void createTriangleProgram() {
+    programGlobal = compileShaderProgram(triangleVertexShaderSource, triangleFragmentShaderSource);
 }
 
 /**
  * 绘制三角形
  */
 void drawTriangle() {
-    if (programGlobal == FAIL) {
+    if (programGlobal == SHADER_COMPILE_FAIL) {
         createTriangleProgram();
     }
-    if (programGlobal == FAIL) {
+    if (programGlobal == SHADER_COMPILE_FAIL) {
         return;
     }
 
@@ -257,16 +218,4 @@ void drawTriangle() {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBindTexture(GL_TEXTURE_2D, texture);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, NULL);
-}
-
-DecodedImage *getImage1Data() {
-    auto decodedImage = getImageData("../test.png");
-    textureImage1Global = decodedImage;
-    return decodedImage;
-}
-
-DecodedImage *getImage2Data() {
-    auto decodedImage = getImageData("../test2.png");
-    textureImage2Global = decodedImage;
-    return decodedImage;
 }

@@ -37,7 +37,6 @@ int main() {
     }
     glViewport(0, 0, 800, 600);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-    createTriangleProgram();
     while(!glfwWindowShouldClose(window)) {
         processInput(window);
         // 清屏后的颜色

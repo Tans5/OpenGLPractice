@@ -210,6 +210,60 @@ matrixTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MatrixTest.dir/build.make CMakeFiles/MatrixTest.dir/matrixTest.cpp.s
 .PHONY : matrixTest.cpp.s
 
+src/compile_shader_program.o: src/compile_shader_program.cpp.o
+
+.PHONY : src/compile_shader_program.o
+
+# target to build an object file
+src/compile_shader_program.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGLPractice.dir/build.make CMakeFiles/OpenGLPractice.dir/src/compile_shader_program.cpp.o
+.PHONY : src/compile_shader_program.cpp.o
+
+src/compile_shader_program.i: src/compile_shader_program.cpp.i
+
+.PHONY : src/compile_shader_program.i
+
+# target to preprocess a source file
+src/compile_shader_program.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGLPractice.dir/build.make CMakeFiles/OpenGLPractice.dir/src/compile_shader_program.cpp.i
+.PHONY : src/compile_shader_program.cpp.i
+
+src/compile_shader_program.s: src/compile_shader_program.cpp.s
+
+.PHONY : src/compile_shader_program.s
+
+# target to generate assembly for a file
+src/compile_shader_program.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGLPractice.dir/build.make CMakeFiles/OpenGLPractice.dir/src/compile_shader_program.cpp.s
+.PHONY : src/compile_shader_program.cpp.s
+
+src/cube.o: src/cube.cpp.o
+
+.PHONY : src/cube.o
+
+# target to build an object file
+src/cube.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGLPractice.dir/build.make CMakeFiles/OpenGLPractice.dir/src/cube.cpp.o
+.PHONY : src/cube.cpp.o
+
+src/cube.i: src/cube.cpp.i
+
+.PHONY : src/cube.i
+
+# target to preprocess a source file
+src/cube.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGLPractice.dir/build.make CMakeFiles/OpenGLPractice.dir/src/cube.cpp.i
+.PHONY : src/cube.cpp.i
+
+src/cube.s: src/cube.cpp.s
+
+.PHONY : src/cube.s
+
+# target to generate assembly for a file
+src/cube.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGLPractice.dir/build.make CMakeFiles/OpenGLPractice.dir/src/cube.cpp.s
+.PHONY : src/cube.cpp.s
+
 src/glad.o: src/glad.c.o
 
 .PHONY : src/glad.o
@@ -307,6 +361,12 @@ help:
 	@echo "... matrixTest.o"
 	@echo "... matrixTest.i"
 	@echo "... matrixTest.s"
+	@echo "... src/compile_shader_program.o"
+	@echo "... src/compile_shader_program.i"
+	@echo "... src/compile_shader_program.s"
+	@echo "... src/cube.o"
+	@echo "... src/cube.i"
+	@echo "... src/cube.s"
 	@echo "... src/glad.o"
 	@echo "... src/glad.i"
 	@echo "... src/glad.s"

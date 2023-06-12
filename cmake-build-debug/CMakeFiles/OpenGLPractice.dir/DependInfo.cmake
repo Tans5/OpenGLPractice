@@ -16,6 +16,8 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
   )
 set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/pengcheng.tan/CLionProjects/OpenGLPractice/main.cpp" "/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/CMakeFiles/OpenGLPractice.dir/main.cpp.o"
+  "/Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/compile_shader_program.cpp" "/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/CMakeFiles/OpenGLPractice.dir/src/compile_shader_program.cpp.o"
+  "/Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/cube.cpp" "/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/CMakeFiles/OpenGLPractice.dir/src/cube.cpp.o"
   "/Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/image_load.cpp" "/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/CMakeFiles/OpenGLPractice.dir/src/image_load.cpp.o"
   "/Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/triangle.cpp" "/Users/pengcheng.tan/CLionProjects/OpenGLPractice/cmake-build-debug/CMakeFiles/OpenGLPractice.dir/src/triangle.cpp.o"
   )

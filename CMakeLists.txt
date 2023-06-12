@@ -36,7 +36,7 @@ add_executable(OpenGLPractice
         src/glad.c
         src/triangle.cpp
 #        src/glad_linux.c
-        src/glad.c src/image_load.cpp)
+        src/glad.c src/image_load.cpp src/cube.cpp src/compile_shader_program.cpp)
 
 target_include_directories(
         OpenGLPractice PUBLIC

@@ -134,6 +134,12 @@
 		<Unit filename="/Users/pengcheng.tan/CLionProjects/OpenGLPractice/matrixTest.cpp">
 			<Option target="MatrixTest"/>
 		</Unit>
+		<Unit filename="/Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/compile_shader_program.cpp">
+			<Option target="OpenGLPractice"/>
+		</Unit>
+		<Unit filename="/Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/cube.cpp">
+			<Option target="OpenGLPractice"/>
+		</Unit>
 		<Unit filename="/Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/glad.c">
 			<Option target="OpenGLPractice"/>
 		</Unit>
