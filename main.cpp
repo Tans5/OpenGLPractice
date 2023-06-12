@@ -50,6 +50,6 @@ int main() {
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
-    std::cout << "Hello, World!" << std::endl;
+    glfwTerminate();
     return 0;
 }
