@@ -180,19 +180,22 @@ void drawCube() {
     // 使用程序
     glUseProgram(cubeProgram);
 
+    float timeValue = glfwGetTime();
     // 3D 矩阵变换
 //    glm::mat4 model = glm::mat4(1.0f);
 //    model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
     glm::mat4 view = glm::mat4(1.0f);
-    view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
-    glm::mat4 projection;
+    float radius = 10.0f;
+    float camX = sin(timeValue) * radius;
+    float camZ = cos(timeValue) * radius;
+    view = glm::lookAt(glm::vec3(camX, 0.0, camZ), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
+    glm::mat4 projection = glm::mat4(1.0f);
     projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
 //    glUniformMatrix4fv(glGetUniformLocation(cubeProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
     glUniformMatrix4fv(glGetUniformLocation(cubeProgram, "view"), 1, GL_FALSE, glm::value_ptr(view));
     glUniformMatrix4fv(glGetUniformLocation(cubeProgram, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 
     glm::mat4 transform = glm::mat4(1.0f);
-    float timeValue = glfwGetTime();
     // 旋转
     transform = glm::rotate(transform, glm::radians(timeValue * 100), glm::vec3(0.5f, 1.0f, 0.0f));
     glUniformMatrix4fv(glGetUniformLocation(cubeProgram, "transform"), 1, GL_FALSE, glm::value_ptr(transform));
