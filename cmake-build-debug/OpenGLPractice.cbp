@@ -137,6 +137,9 @@
 		<Unit filename="/Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/glad.c">
 			<Option target="OpenGLPractice"/>
 		</Unit>
+		<Unit filename="/Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/image_load.cpp">
+			<Option target="OpenGLPractice"/>
+		</Unit>
 		<Unit filename="/Users/pengcheng.tan/CLionProjects/OpenGLPractice/src/triangle.cpp">
 			<Option target="OpenGLPractice"/>
 		</Unit>

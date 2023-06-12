@@ -8,8 +8,13 @@ CMakeFiles/OpenGLPractice.dir/src/glad.c.o: ../src/glad.c
 CMakeFiles/OpenGLPractice.dir/main.cpp.o: ../include/GLFW/glfw3.h
 CMakeFiles/OpenGLPractice.dir/main.cpp.o: ../include/KHR/khrplatform.h
 CMakeFiles/OpenGLPractice.dir/main.cpp.o: ../include/glad/glad.h
+CMakeFiles/OpenGLPractice.dir/main.cpp.o: ../include/image_load.h
 CMakeFiles/OpenGLPractice.dir/main.cpp.o: ../include/triangle.h
 CMakeFiles/OpenGLPractice.dir/main.cpp.o: ../main.cpp
+
+CMakeFiles/OpenGLPractice.dir/src/image_load.cpp.o: ../include/image_load.h
+CMakeFiles/OpenGLPractice.dir/src/image_load.cpp.o: ../include/stb_image.h
+CMakeFiles/OpenGLPractice.dir/src/image_load.cpp.o: ../src/image_load.cpp
 
 CMakeFiles/OpenGLPractice.dir/src/triangle.cpp.o: ../include/GLFW/glfw3.h
 CMakeFiles/OpenGLPractice.dir/src/triangle.cpp.o: ../include/KHR/khrplatform.h
@@ -215,6 +220,7 @@ CMakeFiles/OpenGLPractice.dir/src/triangle.cpp.o: ../include/glm/vec2.hpp
 CMakeFiles/OpenGLPractice.dir/src/triangle.cpp.o: ../include/glm/vec3.hpp
 CMakeFiles/OpenGLPractice.dir/src/triangle.cpp.o: ../include/glm/vec4.hpp
 CMakeFiles/OpenGLPractice.dir/src/triangle.cpp.o: ../include/glm/vector_relational.hpp
+CMakeFiles/OpenGLPractice.dir/src/triangle.cpp.o: ../include/image_load.h
 CMakeFiles/OpenGLPractice.dir/src/triangle.cpp.o: ../include/stb_image.h
 CMakeFiles/OpenGLPractice.dir/src/triangle.cpp.o: ../include/triangle.h
 CMakeFiles/OpenGLPractice.dir/src/triangle.cpp.o: ../src/triangle.cpp

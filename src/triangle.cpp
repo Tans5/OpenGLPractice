@@ -259,17 +259,6 @@ void drawTriangle() {
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, NULL);
 }
 
-DecodedImage *getImageData(const char * path) {
-    int width, height, channels;
-    unsigned char *data = stbi_load(path, &width, &height, &channels, 0);
-    auto decodedImage = new DecodedImage;
-    decodedImage -> data = data;
-    decodedImage -> width = width;
-    decodedImage -> height = height;
-    decodedImage -> channels = channels;
-    return decodedImage;
-}
-
 DecodedImage *getImage1Data() {
     auto decodedImage = getImageData("../test.png");
     textureImage1Global = decodedImage;

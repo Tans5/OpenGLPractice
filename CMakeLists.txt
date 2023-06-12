@@ -12,8 +12,7 @@ find_package(OpenGL REQUIRED)
 add_library(
         libglfw3
         SHARED
-        IMPORTED
-        include/triangle.h include/stb_image.h)
+        IMPORTED)
 set_target_properties( libglfw3
         PROPERTIES IMPORTED_LOCATION
        ${CMAKE_CURRENT_SOURCE_DIR}/libs/mac/lib-arm64/libglfw.3.dylib
@@ -37,7 +36,7 @@ add_executable(OpenGLPractice
         src/glad.c
         src/triangle.cpp
 #        src/glad_linux.c
-        src/glad.c)
+        src/glad.c src/image_load.cpp)
 
 target_include_directories(
         OpenGLPractice PUBLIC

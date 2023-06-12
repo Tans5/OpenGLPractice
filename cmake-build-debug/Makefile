@@ -237,6 +237,33 @@ src/glad.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGLPractice.dir/build.make CMakeFiles/OpenGLPractice.dir/src/glad.c.s
 .PHONY : src/glad.c.s
 
+src/image_load.o: src/image_load.cpp.o
+
+.PHONY : src/image_load.o
+
+# target to build an object file
+src/image_load.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGLPractice.dir/build.make CMakeFiles/OpenGLPractice.dir/src/image_load.cpp.o
+.PHONY : src/image_load.cpp.o
+
+src/image_load.i: src/image_load.cpp.i
+
+.PHONY : src/image_load.i
+
+# target to preprocess a source file
+src/image_load.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGLPractice.dir/build.make CMakeFiles/OpenGLPractice.dir/src/image_load.cpp.i
+.PHONY : src/image_load.cpp.i
+
+src/image_load.s: src/image_load.cpp.s
+
+.PHONY : src/image_load.s
+
+# target to generate assembly for a file
+src/image_load.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGLPractice.dir/build.make CMakeFiles/OpenGLPractice.dir/src/image_load.cpp.s
+.PHONY : src/image_load.cpp.s
+
 src/triangle.o: src/triangle.cpp.o
 
 .PHONY : src/triangle.o
@@ -283,6 +310,9 @@ help:
 	@echo "... src/glad.o"
 	@echo "... src/glad.i"
 	@echo "... src/glad.s"
+	@echo "... src/image_load.o"
+	@echo "... src/image_load.i"
+	@echo "... src/image_load.s"
 	@echo "... src/triangle.o"
 	@echo "... src/triangle.i"
 	@echo "... src/triangle.s"
